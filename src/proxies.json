@@ -1,0 +1,10 @@
+{
+    "proxies": {
+        "ContentProxy": {
+            "matchCondition": {
+                "route": "*"
+            },
+            "backendUri": "http://isitinthecloud.azurewebsites.net/Content"
+        }
+    }
+}
