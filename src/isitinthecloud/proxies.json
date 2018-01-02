@@ -1,0 +1,11 @@
+﻿{
+  "$schema": "http://json.schemastore.org/proxies",
+  "proxies": {
+    "ContentProxy": {
+      "matchCondition": {
+        "route": "{*route}"
+      },
+      "backendUri": "https://isitinthecloud.azurewebsites.net/api/Content"
+    }
+  }
+}
