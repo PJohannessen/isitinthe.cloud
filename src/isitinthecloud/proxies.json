@@ -3,9 +3,10 @@
   "proxies": {
     "ContentProxy": {
       "matchCondition": {
+        "methods":  ["GET"], 
         "route": "{*route}"
       },
-      "backendUri": "https://isitinthecloud.azurewebsites.net/api/Content"
+      "backendUri": "https://localhost/api/Content"
     }
   }
 }
