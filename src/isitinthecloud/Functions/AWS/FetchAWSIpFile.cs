@@ -19,7 +19,7 @@ namespace isitinthecloud
 
         [FunctionName("FetchAWSIpFile")]
         public async Task Run(
-            [TimerTrigger("0 0 * * * *")] TimerInfo myTimer,
+            [TimerTrigger("0 0 0 * * Mon")] TimerInfo myTimer,
             ILogger log,
             Binder binder)
         {
