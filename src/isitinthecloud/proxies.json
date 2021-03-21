@@ -1,12 +1,5 @@
 ﻿{
   "$schema": "http://json.schemastore.org/proxies",
   "proxies": {
-    "ContentProxy": {
-      "matchCondition": {
-        "methods":  ["GET"], 
-        "route": "{*route}"
-      },
-      "backendUri": "https://localhost/api/Content"
-    }
   }
 }

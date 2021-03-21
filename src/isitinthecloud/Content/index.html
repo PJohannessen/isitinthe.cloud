@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Is It in the Cloud?</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+    }
+
+    input {
+      width: 200px;
+    }
+
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" defer></script>
+  <script src="index.js" defer></script>
+</head>
+<body>
+<div id="app">
+  <div v-cloak>
+    <h1>Is It in the Cloud?</h1>
+    <form v-on:submit.prevent="onSubmit">
+      <input type="text" id="lookup" name="lookup" placeholder="Enter a URL, hostname or IP." v-model="lookup" :disabled="loading == true" />
+    </form><br />
+    <div id="loading" v-if="loading === true">Checking...</div>
+    <div id="result" v-if="!!result">
+      <div v-if="!!result && !result.success">An error occurred. Please ensure a valid URL, hostname or IP was provided.</div>
+      <div v-if="!!result && result.success && result.match">
+        <span v-if="result.hostName">Yes, it looks like {{ result.hostName }} ({{ result.ip }}) is hosted on {{ result.platform }}!</span>
+        <span v-else>Yes, it looks like {{ result.ip }} is hosted on {{ result.platform }}!</span>
+        <br />
+        Region: {{ result.region }}<br />
+        CIDR: {{ result.cidr }}<br />
+        Service: {{ result.service }}
+      </div>
+      <div v-if="!!result && result.success && !result.match">
+        <span v-if="result.hostName">No, it looks like {{ result.hostName }} ({{ result.ip }}) is not hosted in the cloud.</span>
+        <span v-else>No, it looks like {{ result.ip }} is not hosted in the cloud.</span>
+      </div>
+    </div><br />
+
+    <footer>
+      <p>See <a href="https://lonesomecrowdedweb.com/blog/site-on-azure-functions/">here</a> for more details.</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>
