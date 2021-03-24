@@ -3,32 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Discover whether or not any website is hosted in the cloud!"/>
+  <link rel="canonical" href="https://isitinthe.cloud" />
   <title>Is It in the Cloud?</title>
   <style>
+    html, body {
+      height: 100%;
+    }
     body {
+      align-items: center;
       display: flex;
+      flex-direction: column;
       justify-content: center;
+      margin: 0 auto;
     }
-
+    main {
+      flex: 1 0 auto;
+      max-width: 600px;
+      min-width: 600px;
+    }
     footer {
-      position: absolute;
-      bottom: 0;
+      flex-shrink: 0;
+      max-width: 600px;
+      min-width: 600px;
     }
-
     input {
       width: 200px;
     }
-
     [v-cloak] {
       display: none;
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12" defer></script>
   <script src="index.js" defer></script>
 </head>
 <body>
-<div id="app">
-  <div v-cloak>
+  <main id="app" v-cloak>
     <h1>Is It in the Cloud?</h1>
     <form v-on:submit.prevent="onSubmit">
       <input type="text" id="lookup" name="lookup" placeholder="Enter a URL, hostname or IP." v-model="lookup" :disabled="loading == true" />
@@ -39,7 +49,7 @@
       <div v-if="!!result && result.success && result.match">
         <span v-if="result.hostName">Yes, it looks like {{ result.hostName }} ({{ result.ip }}) is hosted on {{ result.platform }}!</span>
         <span v-else>Yes, it looks like {{ result.ip }} is hosted on {{ result.platform }}!</span>
-        <br />
+        <br /><br />
         Region: {{ result.region }}<br />
         CIDR: {{ result.cidr }}<br />
         Service: {{ result.service }}
@@ -49,11 +59,9 @@
         <span v-else>No, it looks like {{ result.ip }} is not hosted in the cloud.</span>
       </div>
     </div><br />
-
-    <footer>
-      <p>See <a href="https://lonesomecrowdedweb.com/blog/site-on-azure-functions/">here</a> for more details.</p>
-    </footer>
-  </div>
-</div>
+  </main>
+<footer>
+  <p>See <a href="https://www.lonesomecrowdedweb.com/blog/site-on-azure-functions/">here</a> and <a href="https://www.lonesomecrowdedweb.com/blog/revisiting-a-site-on-azure-functions/">here</a> for more details.</p>
+</footer>
 </body>
 </html>
